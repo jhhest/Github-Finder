@@ -1,20 +1,34 @@
+import axios from "axios";
 import React, { Component } from "react";
 import "./App.css";
+import Navbar from "./components/layout/Navbar";
+import Users from "./components/users/Users";
 
 class App extends Component {
-  foo = () => "bar";
+  state = {
+    users: [],
+    loading: false,
+  };
+
+  async componentDidMount() {
+    console.log(process.env.REACT_APP_CLIENT_SECRET);
+    this.setState({ loading: true });
+    const res = await axios.get(
+      `https:/api.github.com/users?client_id=
+      ${process.env.REACT_APP_GITHUB_CLIENT_ID}
+      &client_secret=
+      ${process.env.REACT_APP_CLIENT_SECRET}`
+    );
+    this.setState({ users: res.data, loading: false });
+  }
+
   render() {
-    const name = "John Doe";
-    const loading = "false";
-    const showName = "true";
     return (
       <div className="App">
-        {loading ? <h4>Loading...</h4> : <h1>Hello {name}</h1>}
-        <h1>Hello from react - Github finder Project.</h1>
-        <h2>Hello {name}</h2>
-        <p>foo = {this.foo()}</p>
-        <p>1 + 1 = {1 + 1}</p>
-        <p>should i show the name?:{showName && name}</p>
+        <Navbar />
+        <div className="container">
+          <Users loading={this.state.loading} users={this.state.users} />
+        </div>
       </div>
     );
   }
