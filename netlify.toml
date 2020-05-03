@@ -1,6 +1,6 @@
 [build]
   publish="build"
 [[redirects]]
-  git addfrom = "/*"
+  from = "/*"
   to = "/index.html"
   status = 200
