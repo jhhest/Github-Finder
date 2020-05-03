@@ -10,12 +10,10 @@ import {
   GET_REPOS,
 } from "../types";
 
-let githubClientId;
-let githubClientSecret;
-  githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
-  githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+let githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+let githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 
-  const GithubState = (props) => {
+const GithubState = (props) => {
   const initialState = {
     users: [],
     user: {},
