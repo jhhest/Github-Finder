@@ -12,15 +12,10 @@ import {
 
 let githubClientId;
 let githubClientSecret;
-console.log("node env is:", process.env.NODE_ENV);
-if (process.env.NODE_ENV !== "development") {
   githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-} else {
-  githubClientId = process.env.GITHUB_CLIENT_ID;
-  githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
-}
-const GithubState = (props) => {
+
+  const GithubState = (props) => {
   const initialState = {
     users: [],
     user: {},
